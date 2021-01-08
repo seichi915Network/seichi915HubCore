@@ -15,6 +15,7 @@ class PlayerJoinListener extends Listener {
                      "Welcome to _",
                      BarColor.WHITE,
                      BarStyle.SOLID)
+    bossBar.setProgress(1.0)
     bossBar.addPlayer(event.getPlayer)
     Seichi915HubCore.bossBarMap += event.getPlayer -> bossBar
   }
