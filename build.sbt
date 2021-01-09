@@ -6,11 +6,13 @@ resolvers ++= Seq(
   "hub.spigotmc.org" at "https://hub.spigotmc.org/nexus/content/repositories/snapshots/",
   "oss.sonatype.org" at "https://oss.sonatype.org/content/repositories/snapshots",
   "maven.elmakers.com" at "https://maven.elmakers.com/repository/",
-  "papermc.io" at "https://papermc.io/repo/repository/maven-public/"
+  "papermc.io" at "https://papermc.io/repo/repository/maven-public/",
+  "repo.onarandombox.com" at "https://repo.onarandombox.com/content/repositories/multiverse/"
 )
 
 libraryDependencies ++= Seq(
-  "com.destroystokyo.paper" % "paper-api" % "1.14.4-R0.1-SNAPSHOT"
+  "com.destroystokyo.paper" % "paper-api" % "1.14.4-R0.1-SNAPSHOT",
+  "com.onarandombox.multiversecore" % "Multiverse-Core" % "4.2.2"
 )
 
 assemblyMergeStrategy in assembly := {

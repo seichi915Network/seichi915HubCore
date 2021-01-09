@@ -1,9 +1,12 @@
 package net.seichi915.seichi915hubcore
 
+import com.onarandombox.MultiverseCore.MultiverseCore
+import net.seichi915.seichi915hubcore.command._
 import net.seichi915.seichi915hubcore.listener._
 import net.seichi915.seichi915hubcore.task._
 import org.bukkit.Bukkit
 import org.bukkit.boss.BossBar
+import org.bukkit.command.{CommandExecutor, TabExecutor}
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitRunnable
@@ -12,6 +15,7 @@ import scala.collection.mutable
 
 object Seichi915HubCore {
   var instance: Seichi915HubCore = _
+  var multiverseCore: MultiverseCore = _
 
   var bossBarMap: mutable.HashMap[Player, BossBar] = mutable.HashMap()
   var noFallEntities: mutable.HashMap[Int, Int] = mutable.HashMap()
@@ -33,6 +37,18 @@ class Seichi915HubCore extends JavaPlugin {
       case ((delay: Int, period: Int), bukkitRunnable: BukkitRunnable) =>
         bukkitRunnable.runTaskTimer(this, delay, period)
     }
+    Map(
+      "athletic" -> new AthleticCommand
+    ).foreach {
+      case (commandName: String, commandExecutor: CommandExecutor) =>
+        Bukkit.getPluginCommand(commandName).setExecutor(commandExecutor)
+        Bukkit
+          .getPluginCommand(commandName)
+          .setTabCompleter(commandExecutor.asInstanceOf[TabExecutor])
+    }
+    Seichi915HubCore.multiverseCore = getServer.getPluginManager
+      .getPlugin("Multiverse-Core")
+      .asInstanceOf[MultiverseCore]
 
     getLogger.info("seichi915HubCoreが有効になりました。")
   }

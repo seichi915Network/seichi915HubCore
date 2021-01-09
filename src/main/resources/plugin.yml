@@ -6,7 +6,14 @@ load: POSTWORLD
 authors: [stouma915]
 description: "seichi915Hub コアプラグイン"
 website: https://www.seichi915.net
-commands: {}
+depend:
+  - Multiverse-Core
+commands:
+  athletic:
+    description: Teleport to athletic world
+    usage: /athletic
+    permission: seichi915hubcore.command.athletic
+    permission-message: "§c権限が不足しています。"
 permissions:
   seichi915hubcore.*:
     description: Grant all permissions of seichi915HubCore
@@ -14,4 +21,8 @@ permissions:
       seichi915hubcore.command.*: true
   seichi915hubcore.command.*:
     description: Grant all command permissions of seichi915HubCore
-    children: {}
+    children:
+      seichi915hubcore.command.athletic: true
+  seichi915hubcore.command.athletic:
+    description: Permission to use /athletic
+    default: true
