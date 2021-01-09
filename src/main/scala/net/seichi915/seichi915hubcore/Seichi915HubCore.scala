@@ -14,6 +14,7 @@ object Seichi915HubCore {
   var instance: Seichi915HubCore = _
 
   var bossBarMap: mutable.HashMap[Player, BossBar] = mutable.HashMap()
+  var noFallEntities: mutable.HashMap[Int, Int] = mutable.HashMap()
 }
 
 class Seichi915HubCore extends JavaPlugin {
@@ -21,6 +22,7 @@ class Seichi915HubCore extends JavaPlugin {
 
   override def onEnable(): Unit = {
     Seq(
+      new PlayerFishListener,
       new PlayerJoinListener,
       new PlayerMoveListener,
       new PlayerQuitListener
