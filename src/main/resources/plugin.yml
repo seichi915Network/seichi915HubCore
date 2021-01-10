@@ -14,6 +14,16 @@ commands:
     usage: /athletic
     permission: seichi915hubcore.command.athletic
     permission-message: "§c権限が不足しています。"
+  pvp:
+    description: Teleport to PvP world
+    usage: /pvp
+    permission: seichi915hubcore.command.pvp
+    permission-message: "§c権限が不足しています。"
+  admins:
+    description: Teleport to administrator introduction world
+    usage: /admins
+    permission: seichi915hubcore.command.admins
+    permission-message: "§c権限が不足しています。"
 permissions:
   seichi915hubcore.*:
     description: Grant all permissions of seichi915HubCore
@@ -23,6 +33,14 @@ permissions:
     description: Grant all command permissions of seichi915HubCore
     children:
       seichi915hubcore.command.athletic: true
+      seichi915hubcore.command.pvp: true
+      seichi915hubcore.command.admins: true
   seichi915hubcore.command.athletic:
     description: Permission to use /athletic
+    default: true
+  seichi915hubcore.command.pvp:
+    description: Permission to use /pvp
+    default: true
+  seichi915hubcore.command.admins:
+    description: Permission to use /admins
     default: true

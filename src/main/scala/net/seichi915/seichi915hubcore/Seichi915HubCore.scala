@@ -38,7 +38,9 @@ class Seichi915HubCore extends JavaPlugin {
         bukkitRunnable.runTaskTimer(this, delay, period)
     }
     Map(
-      "athletic" -> new AthleticCommand
+      "admins" -> new AdminsCommand,
+      "athletic" -> new AthleticCommand,
+      "pvp" -> new PvPCommand
     ).foreach {
       case (commandName: String, commandExecutor: CommandExecutor) =>
         Bukkit.getPluginCommand(commandName).setExecutor(commandExecutor)
