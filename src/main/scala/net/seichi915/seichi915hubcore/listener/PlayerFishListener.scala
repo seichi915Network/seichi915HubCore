@@ -9,7 +9,8 @@ import org.bukkit.event.{EventHandler, EventPriority, Listener}
 class PlayerFishListener extends Listener {
   @EventHandler(priority = EventPriority.HIGHEST)
   def onFish(event: PlayerFishEvent): Unit = {
-    if (!event.getPlayer.getWorld.getName.equalsIgnoreCase("Hub")) return
+    if (!event.getPlayer.getWorld.getName.equalsIgnoreCase("Hub") && event.getPlayer.getWorld.getName
+          .equalsIgnoreCase("Administrators")) return
     if (event.getPlayer.getInventory.getItemInMainHand.isNull) return
     if (event.getPlayer.getInventory.getItemInMainHand.getItemMeta.isNull)
       return
