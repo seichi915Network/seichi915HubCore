@@ -40,6 +40,7 @@ class Seichi915HubCore extends JavaPlugin {
     Map(
       "admins" -> new AdminsCommand,
       "athletic" -> new AthleticCommand,
+      "main" -> new MainCommand,
       "pvp" -> new PvPCommand
     ).foreach {
       case (commandName: String, commandExecutor: CommandExecutor) =>

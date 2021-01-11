@@ -24,6 +24,11 @@ commands:
     usage: /admins
     permission: seichi915hubcore.command.admins
     permission-message: "§c権限が不足しています。"
+  main:
+    description: Teleport to main world
+    usage: /main
+    permission: seichi915hubcore.command.main
+    permission-message: "§c権限が不足しています。"
 permissions:
   seichi915hubcore.*:
     description: Grant all permissions of seichi915HubCore
@@ -35,6 +40,7 @@ permissions:
       seichi915hubcore.command.athletic: true
       seichi915hubcore.command.pvp: true
       seichi915hubcore.command.admins: true
+      seichi915hubcore.command.main: true
   seichi915hubcore.command.athletic:
     description: Permission to use /athletic
     default: true
@@ -43,4 +49,7 @@ permissions:
     default: true
   seichi915hubcore.command.admins:
     description: Permission to use /admins
+    default: true
+  seichi915hubcore.command.main:
+    description: Permission to use /main
     default: true
