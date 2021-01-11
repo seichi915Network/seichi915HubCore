@@ -13,6 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitRunnable
 
 import scala.collection.mutable
+import scala.jdk.CollectionConverters._
 
 object Seichi915HubCore {
   var instance: Seichi915HubCore = _
@@ -69,6 +70,9 @@ class Seichi915HubCore extends JavaPlugin {
   }
 
   override def onDisable(): Unit = {
+    getServer.getOnlinePlayers.asScala
+      .foreach(_.kickPlayer(getServer.getShutdownMessage))
+
     getLogger.info("seichi915HubCoreが無効になりました。")
   }
 }
