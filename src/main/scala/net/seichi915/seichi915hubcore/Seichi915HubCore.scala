@@ -8,6 +8,7 @@ import org.bukkit.Bukkit
 import org.bukkit.boss.BossBar
 import org.bukkit.command.{CommandExecutor, TabExecutor}
 import org.bukkit.entity.Player
+import org.bukkit.inventory.{Inventory, ItemStack}
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitRunnable
 
@@ -19,6 +20,15 @@ object Seichi915HubCore {
 
   var bossBarMap: mutable.HashMap[Player, BossBar] = mutable.HashMap()
   var noFallEntities: mutable.HashMap[Int, Int] = mutable.HashMap()
+  var mainWorldInventories: mutable.HashMap[Player, Inventory] =
+    mutable.HashMap()
+  var mainWorldHelmets: mutable.HashMap[Player, ItemStack] = mutable.HashMap()
+  var mainWorldChestplates: mutable.HashMap[Player, ItemStack] =
+    mutable.HashMap()
+  var mainWorldLeggings: mutable.HashMap[Player, ItemStack] = mutable.HashMap()
+  var mainWorldBoots: mutable.HashMap[Player, ItemStack] = mutable.HashMap()
+  var mainWorldItemInOffHand: mutable.HashMap[Player, ItemStack] =
+    mutable.HashMap()
 }
 
 class Seichi915HubCore extends JavaPlugin {
@@ -26,7 +36,9 @@ class Seichi915HubCore extends JavaPlugin {
 
   override def onEnable(): Unit = {
     Seq(
+      new EntityDamageByEntityListener,
       new PlayerFishListener,
+      new PlayerItemConsumeListener,
       new PlayerJoinListener,
       new PlayerMoveListener,
       new PlayerQuitListener

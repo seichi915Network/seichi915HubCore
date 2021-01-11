@@ -7,7 +7,8 @@ import org.bukkit.event.{EventHandler, Listener}
 
 class PlayerQuitListener extends Listener {
   @EventHandler
-  def onPlayerQuit(event: PlayerQuitEvent): Unit =
+  def onPlayerQuit(event: PlayerQuitEvent): Unit = {
+    event.getPlayer.chat("/main")
     Seichi915HubCore.bossBarMap.get(event.getPlayer) match {
       case Some(bossBar) =>
         bossBar.removeAll()
@@ -17,4 +18,5 @@ class PlayerQuitListener extends Listener {
         Seichi915HubCore.bossBarMap.remove(event.getPlayer)
       case None =>
     }
+  }
 }

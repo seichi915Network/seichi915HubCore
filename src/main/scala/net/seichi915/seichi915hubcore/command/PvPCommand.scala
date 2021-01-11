@@ -2,8 +2,11 @@ package net.seichi915.seichi915hubcore.command
 
 import net.seichi915.seichi915hubcore.Seichi915HubCore
 import net.seichi915.seichi915hubcore.util.Implicits._
+import org.bukkit.Material
 import org.bukkit.command.{Command, CommandExecutor, CommandSender, TabExecutor}
+import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
+import org.bukkit.inventory.{ItemFlag, ItemStack}
 
 import java.util
 import java.util.Collections
@@ -21,9 +24,43 @@ class PvPCommand extends CommandExecutor with TabExecutor {
       sender.sendMessage("コマンドの使用法が間違っています。".toErrorMessage)
       return true
     }
+    val player = sender.asInstanceOf[Player]
+    if (player.getWorld.getName.equalsIgnoreCase("Hub") || player.getWorld.getName
+          .equalsIgnoreCase("Administrators")) {
+      Seichi915HubCore.mainWorldInventories += player -> player.getInventory.cloneInventory
+      Seichi915HubCore.mainWorldHelmets += player -> player.getInventory.getHelmetSafety
+        .clone()
+      Seichi915HubCore.mainWorldChestplates += player -> player.getInventory.getChestplateSafety
+        .clone()
+      Seichi915HubCore.mainWorldLeggings += player -> player.getInventory.getLeggingsSafety
+        .clone()
+      Seichi915HubCore.mainWorldBoots += player -> player.getInventory.getBootsSafety
+        .clone()
+      Seichi915HubCore.mainWorldItemInOffHand += player -> player.getInventory.getItemInOffHandSafety
+        .clone()
+    }
+    player.getInventory.clear()
+    val sword = new ItemStack(Material.IRON_SWORD)
+    val swordMeta = sword.getItemMeta
+    swordMeta.setUnbreakable(true)
+    swordMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE, ItemFlag.HIDE_ENCHANTS)
+    sword.setItemMeta(swordMeta)
+    sword.addEnchantment(Enchantment.KNOCKBACK, 2)
+    val bow = new ItemStack(Material.BOW)
+    val bowMeta = bow.getItemMeta
+    bowMeta.setUnbreakable(true)
+    bowMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE, ItemFlag.HIDE_ENCHANTS)
+    bow.setItemMeta(bowMeta)
+    bow.addEnchantment(Enchantment.ARROW_INFINITE, 1)
+    val arrow = new ItemStack(Material.ARROW)
+    val food = new ItemStack(Material.COOKED_BEEF)
+    player.getInventory.setItem(0, sword)
+    player.getInventory.setItem(1, bow)
+    player.getInventory.setItem(17, arrow)
+    player.getInventory.setItem(2, food)
     val pvpWorld =
       Seichi915HubCore.multiverseCore.getMVWorldManager.getMVWorld("PvP")
-    sender.asInstanceOf[Player].teleport(pvpWorld.getSpawnLocation)
+    player.teleport(pvpWorld.getSpawnLocation)
     true
   }
 
