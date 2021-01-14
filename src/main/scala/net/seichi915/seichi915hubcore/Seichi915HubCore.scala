@@ -6,7 +6,8 @@ import net.seichi915.seichi915hubcore.configuration.Configuration
 import net.seichi915.seichi915hubcore.listener._
 import net.seichi915.seichi915hubcore.menu.ClickAction
 import net.seichi915.seichi915hubcore.task._
-import org.bukkit.Bukkit
+import net.seichi915.seichi915hubcore.util.Implicits._
+import org.bukkit.{Bukkit, Material}
 import org.bukkit.boss.BossBar
 import org.bukkit.command.{CommandExecutor, TabExecutor}
 import org.bukkit.entity.Player
@@ -79,7 +80,34 @@ class Seichi915HubCore extends JavaPlugin {
   }
 
   override def onDisable(): Unit = {
-    getServer.getOnlinePlayers.asScala.foreach(_.chat("/main"))
+    getServer.getOnlinePlayers.asScala.foreach { player =>
+      if (Seichi915HubCore.mainWorldInventories.contains(player)) {
+        player.getInventory.clear()
+        val inventory = Seichi915HubCore.mainWorldInventories(player)
+        (0 to 35).foreach { index =>
+          val item = inventory.getStorageContents.apply(index)
+          if (item.nonNull && item.getType != Material.AIR)
+            player.getInventory.setItem(index, item)
+        }
+        player.getInventory.setHelmet(Seichi915HubCore.mainWorldHelmets(player))
+        player.getInventory.setChestplate(
+          Seichi915HubCore.mainWorldChestplates(player))
+        player.getInventory.setLeggings(
+          Seichi915HubCore.mainWorldLeggings(player))
+        player.getInventory.setBoots(Seichi915HubCore.mainWorldBoots(player))
+        player.getInventory.setItemInOffHand(
+          Seichi915HubCore.mainWorldItemInOffHand(player))
+        Seichi915HubCore.mainWorldInventories.remove(player)
+        Seichi915HubCore.mainWorldHelmets.remove(player)
+        Seichi915HubCore.mainWorldChestplates.remove(player)
+        Seichi915HubCore.mainWorldLeggings.remove(player)
+        Seichi915HubCore.mainWorldBoots.remove(player)
+        Seichi915HubCore.mainWorldItemInOffHand.remove(player)
+      }
+      val mainWorld =
+        Seichi915HubCore.multiverseCore.getMVWorldManager.getMVWorld("Hub")
+      player.teleport(mainWorld.getSpawnLocation)
+    }
 
     getLogger.info("seichi915HubCoreが無効になりました。")
   }
