@@ -1,0 +1,7 @@
+Servers:
+  seichi:
+    Title: "整地鯖"
+    Description: {}
+    Icon:
+      Material: IRON_PICKAXE
+      Enchanted: true

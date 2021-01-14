@@ -1,6 +1,6 @@
 package net.seichi915.seichi915hubcore.command
 
-import net.seichi915.seichi915hubcore.Seichi915HubCore
+import net.seichi915.seichi915hubcore.menu.MainMenu
 import net.seichi915.seichi915hubcore.util.Implicits._
 import org.bukkit.command.{Command, CommandExecutor, CommandSender, TabExecutor}
 import org.bukkit.entity.Player
@@ -8,7 +8,7 @@ import org.bukkit.entity.Player
 import java.util
 import java.util.Collections
 
-class AthleticCommand extends CommandExecutor with TabExecutor {
+class MenuCommand extends CommandExecutor with TabExecutor {
   override def onCommand(sender: CommandSender,
                          command: Command,
                          label: String,
@@ -17,13 +17,12 @@ class AthleticCommand extends CommandExecutor with TabExecutor {
       sender.sendMessage("このコマンドはプレイヤーのみが実行できます。".toErrorMessage)
       return true
     }
-    if (args.length != 0) {
+    if (args.nonEmpty) {
       sender.sendMessage("コマンドの使用法が間違っています。".toErrorMessage)
       return true
     }
-    val athleticWorld =
-      Seichi915HubCore.multiverseCore.getMVWorldManager.getMVWorld("Athletic")
-    sender.asInstanceOf[Player].teleport(athleticWorld.getSpawnLocation)
+    val player = sender.asInstanceOf[Player]
+    MainMenu.open(player)
     true
   }
 

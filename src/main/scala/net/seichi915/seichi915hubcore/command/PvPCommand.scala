@@ -20,7 +20,7 @@ class PvPCommand extends CommandExecutor with TabExecutor {
       sender.sendMessage("このコマンドはプレイヤーのみが実行できます。".toErrorMessage)
       return true
     }
-    if (args.length != 0) {
+    if (args.nonEmpty) {
       sender.sendMessage("コマンドの使用法が間違っています。".toErrorMessage)
       return true
     }

@@ -67,6 +67,8 @@ class BossBarTask extends BukkitRunnable {
             bossBar.setColor(BarColor.WHITE)
             bossBar.setTitle("Welcome to _")
           case _ =>
+            bossBar.setColor(BarColor.WHITE)
+            bossBar.setTitle("Welcome to _")
         }
     }
 }

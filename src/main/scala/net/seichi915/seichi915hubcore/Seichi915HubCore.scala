@@ -2,7 +2,9 @@ package net.seichi915.seichi915hubcore
 
 import com.onarandombox.MultiverseCore.MultiverseCore
 import net.seichi915.seichi915hubcore.command._
+import net.seichi915.seichi915hubcore.configuration.Configuration
 import net.seichi915.seichi915hubcore.listener._
+import net.seichi915.seichi915hubcore.menu.ClickAction
 import net.seichi915.seichi915hubcore.task._
 import org.bukkit.Bukkit
 import org.bukkit.boss.BossBar
@@ -12,6 +14,7 @@ import org.bukkit.inventory.{Inventory, ItemStack}
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitRunnable
 
+import java.util.UUID
 import scala.collection.mutable
 import scala.jdk.CollectionConverters._
 
@@ -30,15 +33,19 @@ object Seichi915HubCore {
   var mainWorldBoots: mutable.HashMap[Player, ItemStack] = mutable.HashMap()
   var mainWorldItemInOffHand: mutable.HashMap[Player, ItemStack] =
     mutable.HashMap()
+  var clickActionMap: mutable.HashMap[UUID, ClickAction] = mutable.HashMap()
 }
 
 class Seichi915HubCore extends JavaPlugin {
   Seichi915HubCore.instance = this
 
   override def onEnable(): Unit = {
+    Configuration.saveDefaultConfig()
     Seq(
       new EntityDamageByEntityListener,
+      new InventoryClickListener,
       new PlayerFishListener,
+      new PlayerInteractListener,
       new PlayerItemConsumeListener,
       new PlayerJoinListener,
       new PlayerMoveListener,
@@ -52,8 +59,8 @@ class Seichi915HubCore extends JavaPlugin {
     }
     Map(
       "admins" -> new AdminsCommand,
-      "athletic" -> new AthleticCommand,
       "main" -> new MainCommand,
+      "menu" -> new MenuCommand,
       "pvp" -> new PvPCommand
     ).foreach {
       case (commandName: String, commandExecutor: CommandExecutor) =>
@@ -65,13 +72,14 @@ class Seichi915HubCore extends JavaPlugin {
     Seichi915HubCore.multiverseCore = getServer.getPluginManager
       .getPlugin("Multiverse-Core")
       .asInstanceOf[MultiverseCore]
+    getServer.getMessenger
+      .registerOutgoingPluginChannel(Seichi915HubCore.instance, "BungeeCord")
 
     getLogger.info("seichi915HubCoreが有効になりました。")
   }
 
   override def onDisable(): Unit = {
-    getServer.getOnlinePlayers.asScala
-      .foreach(_.kickPlayer(getServer.getShutdownMessage))
+    getServer.getOnlinePlayers.asScala.foreach(_.chat("/main"))
 
     getLogger.info("seichi915HubCoreが無効になりました。")
   }
