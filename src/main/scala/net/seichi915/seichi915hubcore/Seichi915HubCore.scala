@@ -62,7 +62,8 @@ class Seichi915HubCore extends JavaPlugin {
       "admins" -> new AdminsCommand,
       "main" -> new MainCommand,
       "menu" -> new MenuCommand,
-      "pvp" -> new PvPCommand
+      "pvp" -> new PvPCommand,
+      "spawn" -> new SpawnCommand
     ).foreach {
       case (commandName: String, commandExecutor: CommandExecutor) =>
         Bukkit.getPluginCommand(commandName).setExecutor(commandExecutor)

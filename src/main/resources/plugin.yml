@@ -29,6 +29,11 @@ commands:
     usage: /menu
     permission: seichi915hubcore.command.menu
     permission-message: "§c権限が不足しています。"
+  spawn:
+    description: Teleport to spawn point
+    usage: /spawn
+    permission: seichi915hubcore.command.spawn
+    permission-message: "§c権限が不足しています。"
 permissions:
   seichi915hubcore.*:
     description: Grant all permissions of seichi915HubCore
@@ -41,6 +46,7 @@ permissions:
       seichi915hubcore.command.admins: true
       seichi915hubcore.command.main: true
       seichi915hubcore.command.menu: true
+      seichi915hubcore.command.spawn: true
   seichi915hubcore.command.pvp:
     description: Permission to use /pvp
     default: true
@@ -52,4 +58,7 @@ permissions:
     default: true
   seichi915hubcore.command.menu:
     description: Permission to use /menu
+    default: true
+  seichi915hubcore.command.spawn:
+    description: Permission to use /spawn
     default: true
