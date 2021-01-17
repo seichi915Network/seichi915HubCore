@@ -50,7 +50,8 @@ class Seichi915HubCore extends JavaPlugin {
       new PlayerItemConsumeListener,
       new PlayerJoinListener,
       new PlayerMoveListener,
-      new PlayerQuitListener
+      new PlayerQuitListener,
+      new PlayerTakeLecternBookListener
     ).foreach(Bukkit.getPluginManager.registerEvents(_, this))
     Map(
       (4, 4) -> new BossBarTask
