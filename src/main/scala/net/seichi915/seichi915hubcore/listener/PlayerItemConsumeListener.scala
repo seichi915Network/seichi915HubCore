@@ -3,7 +3,6 @@ package net.seichi915.seichi915hubcore.listener
 import org.bukkit.Material
 import org.bukkit.event.player.PlayerItemConsumeEvent
 import org.bukkit.event.{EventHandler, Listener}
-import org.bukkit.inventory.ItemStack
 
 class PlayerItemConsumeListener extends Listener {
   @EventHandler
