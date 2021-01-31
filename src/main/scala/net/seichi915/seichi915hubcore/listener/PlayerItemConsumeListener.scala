@@ -9,7 +9,8 @@ class PlayerItemConsumeListener extends Listener {
   @EventHandler
   def onPlayerItemConsume(event: PlayerItemConsumeEvent): Unit = {
     if (!event.getPlayer.getWorld.getName.equalsIgnoreCase("PvP")) return
-    if (event.getItem.getType != Material.COOKED_BEEF) return
-    event.setReplacement(new ItemStack(Material.COOKED_BEEF))
+    if (event.getItem.getType != Material.BREAD && event.getItem.getType != Material.POTION)
+      return
+    event.setReplacement(new ItemStack(event.getItem.getType))
   }
 }
