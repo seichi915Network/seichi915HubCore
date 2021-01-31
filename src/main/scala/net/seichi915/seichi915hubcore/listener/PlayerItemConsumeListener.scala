@@ -11,6 +11,8 @@ class PlayerItemConsumeListener extends Listener {
     if (!event.getPlayer.getWorld.getName.equalsIgnoreCase("PvP")) return
     if (event.getItem.getType != Material.BREAD && event.getItem.getType != Material.POTION)
       return
-    event.setReplacement(new ItemStack(event.getItem.getType))
+    val item = event.getItem.clone()
+    item.setAmount(1)
+    event.setReplacement(item)
   }
 }
