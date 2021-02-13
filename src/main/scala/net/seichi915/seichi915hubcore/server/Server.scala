@@ -28,7 +28,6 @@ case class Server(serverName: String,
     }
     if (serverIcon.isEnchanted)
       itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS)
-    itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES)
     itemStack.setItemMeta(itemMeta)
     if (serverIcon.isEnchanted)
       itemStack.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1)
