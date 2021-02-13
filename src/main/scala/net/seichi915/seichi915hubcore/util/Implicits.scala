@@ -2,7 +2,7 @@ package net.seichi915.seichi915hubcore.util
 
 import net.seichi915.seichi915hubcore.Seichi915HubCore
 import net.seichi915.seichi915hubcore.inventory.Seichi915HubInventoryHolder
-import net.seichi915.seichi915hubcore.menu.ClickAction
+import net.seichi915.seichi915hubcore.meta.menu.ClickAction
 import org.bukkit.entity.Player
 import org.bukkit.{Bukkit, ChatColor, Material, NamespacedKey}
 import org.bukkit.inventory.{Inventory, ItemStack, PlayerInventory}
