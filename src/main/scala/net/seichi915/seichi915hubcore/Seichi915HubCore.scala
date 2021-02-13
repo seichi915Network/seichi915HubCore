@@ -4,7 +4,7 @@ import com.onarandombox.MultiverseCore.MultiverseCore
 import net.seichi915.seichi915hubcore.command._
 import net.seichi915.seichi915hubcore.configuration.Configuration
 import net.seichi915.seichi915hubcore.listener._
-import net.seichi915.seichi915hubcore.meta.menu.ClickAction
+import net.seichi915.seichi915hubcore.menu.ClickAction
 import net.seichi915.seichi915hubcore.task._
 import net.seichi915.seichi915hubcore.util.Implicits._
 import org.bukkit.{Bukkit, Material}
