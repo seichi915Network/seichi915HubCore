@@ -2,6 +2,7 @@ package net.seichi915.seichi915hubcore.menu
 
 import net.seichi915.seichi915hubcore.configuration.Configuration
 import net.seichi915.seichi915hubcore.inventory.Seichi915HubInventoryHolder
+import net.seichi915.seichi915hubcore.meta.menu.Menu
 import net.seichi915.seichi915hubcore.util.Implicits._
 import org.bukkit.{Bukkit, ChatColor, Material}
 import org.bukkit.entity.Player
