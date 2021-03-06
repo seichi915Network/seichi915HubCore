@@ -45,7 +45,6 @@ class Seichi915HubCore extends JavaPlugin {
     Seq(
       new EntityDamageByEntityListener,
       new InventoryClickListener,
-      new PlayerFishListener,
       new PlayerInteractListener,
       new PlayerItemConsumeListener,
       new PlayerJoinListener,
