@@ -17,6 +17,7 @@ object Configuration {
       .asScala
       .map { key =>
         val serverName = key
+        val index = config.getInt(s"Servers.$serverName.Index")
         val title =
           s"${ChatColor.WHITE}${ChatColor.translateAlternateColorCodes('&', config.getString(s"Servers.$serverName.Title"))}"
         val description = {
@@ -32,7 +33,7 @@ object Configuration {
         val isIconEnchanted =
           config.getBoolean(s"Servers.$serverName.Icon.Enchanted")
         val serverIcon = ServerIcon(iconMaterial, isIconEnchanted)
-        val server = Server(serverName, title, description, serverIcon)
+        val server = Server(serverName, index, title, description, serverIcon)
         server
       }
       .toList

@@ -6,10 +6,13 @@ import org.bukkit.inventory.{ItemFlag, ItemStack}
 import scala.jdk.CollectionConverters._
 
 case class Server(serverName: String,
+                  index: Int,
                   title: String,
                   description: Option[List[String]],
                   serverIcon: ServerIcon) {
   def getServerName: String = serverName
+
+  def getIndex: Int = index
 
   def getTitle: String = title
 

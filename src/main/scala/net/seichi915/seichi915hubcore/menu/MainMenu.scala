@@ -16,9 +16,8 @@ object MainMenu extends Menu {
       "seichi915Hubメニュー")
     Configuration.getServers.foreach { server =>
       val itemStack = server.toItemStack
-      itemStack.setClickAction((player: Player) =>
-        player.connectToServer(server.getServerName))
-      inventory.addItem(itemStack)
+      itemStack.setClickAction(_.connectToServer(server.getServerName))
+      inventory.setItem(server.getIndex, itemStack)
     }
     val closeButton = new ItemStack(Material.BARRIER)
     val closeButtonMeta = closeButton.getItemMeta
