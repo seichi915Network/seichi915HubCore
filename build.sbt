@@ -1,5 +1,5 @@
 ThisBuild / scalaVersion := "2.13.4"
-ThisBuild / version := "1.0.5"
+ThisBuild / version := "1.0.6"
 ThisBuild / description := "seichi915Hub コアプラグイン"
 
 resolvers ++= Seq(
