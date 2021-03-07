@@ -24,7 +24,6 @@ object Seichi915HubCore {
   var multiverseCore: MultiverseCore = _
 
   var bossBarMap: mutable.HashMap[Player, BossBar] = mutable.HashMap()
-  var noFallEntities: mutable.HashMap[Int, Int] = mutable.HashMap()
   var mainWorldInventories: mutable.HashMap[Player, Inventory] =
     mutable.HashMap()
   var mainWorldHelmets: mutable.HashMap[Player, ItemStack] = mutable.HashMap()
