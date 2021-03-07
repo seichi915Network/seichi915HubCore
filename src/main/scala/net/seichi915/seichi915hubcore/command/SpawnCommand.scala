@@ -1,6 +1,6 @@
 package net.seichi915.seichi915hubcore.command
 
-import net.seichi915.seichi915hubcore.Seichi915HubCore
+import net.seichi915.seichi915hubcore.external.ExternalPlugins
 import net.seichi915.seichi915hubcore.util.Implicits._
 import org.bukkit.command.{Command, CommandExecutor, CommandSender, TabExecutor}
 import org.bukkit.entity.Player
@@ -28,7 +28,7 @@ class SpawnCommand extends CommandExecutor with TabExecutor {
       return true
     }
     val world =
-      Seichi915HubCore.multiverseCore.getMVWorldManager.getMVWorld(worldName)
+      ExternalPlugins.getMultiverseCore.getMVWorldManager.getMVWorld(worldName)
     player.teleport(world.getSpawnLocation)
     true
   }

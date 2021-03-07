@@ -1,6 +1,6 @@
 package net.seichi915.seichi915hubcore.listener
 
-import net.seichi915.seichi915hubcore.Seichi915HubCore
+import net.seichi915.seichi915hubcore.external.ExternalPlugins
 import org.bukkit.entity.{Arrow, Player}
 import org.bukkit.event.entity.EntityDamageByEntityEvent
 import org.bukkit.event.{EventHandler, Listener}
@@ -45,7 +45,7 @@ class EntityDamageByEntityListener extends Listener {
       case _ =>
     }
     val pvpWorld =
-      Seichi915HubCore.multiverseCore.getMVWorldManager.getMVWorld("PvP")
+      ExternalPlugins.getMultiverseCore.getMVWorldManager.getMVWorld("PvP")
     player.teleport(pvpWorld.getSpawnLocation)
     player.setHealth(20)
     player.setFoodLevel(20)

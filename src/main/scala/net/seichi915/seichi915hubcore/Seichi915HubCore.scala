@@ -1,8 +1,8 @@
 package net.seichi915.seichi915hubcore
 
-import com.onarandombox.MultiverseCore.MultiverseCore
 import net.seichi915.seichi915hubcore.command._
 import net.seichi915.seichi915hubcore.configuration.Configuration
+import net.seichi915.seichi915hubcore.external.ExternalPlugins
 import net.seichi915.seichi915hubcore.listener._
 import net.seichi915.seichi915hubcore.meta.menu.ClickAction
 import net.seichi915.seichi915hubcore.task._
@@ -21,7 +21,6 @@ import scala.jdk.CollectionConverters._
 
 object Seichi915HubCore {
   var instance: Seichi915HubCore = _
-  var multiverseCore: MultiverseCore = _
 
   var bossBarMap: mutable.HashMap[Player, BossBar] = mutable.HashMap()
   var mainWorldInventories: mutable.HashMap[Player, Inventory] =
@@ -70,9 +69,6 @@ class Seichi915HubCore extends JavaPlugin {
           .getPluginCommand(commandName)
           .setTabCompleter(commandExecutor.asInstanceOf[TabExecutor])
     }
-    Seichi915HubCore.multiverseCore = getServer.getPluginManager
-      .getPlugin("Multiverse-Core")
-      .asInstanceOf[MultiverseCore]
     getServer.getMessenger
       .registerOutgoingPluginChannel(Seichi915HubCore.instance, "BungeeCord")
 
@@ -105,7 +101,7 @@ class Seichi915HubCore extends JavaPlugin {
         Seichi915HubCore.mainWorldItemInOffHand.remove(player)
       }
       val mainWorld =
-        Seichi915HubCore.multiverseCore.getMVWorldManager.getMVWorld("Hub")
+        ExternalPlugins.getMultiverseCore.getMVWorldManager.getMVWorld("Hub")
       player.teleport(mainWorld.getSpawnLocation)
     }
 

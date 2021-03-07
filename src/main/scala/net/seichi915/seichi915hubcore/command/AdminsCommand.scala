@@ -1,6 +1,7 @@
 package net.seichi915.seichi915hubcore.command
 
 import net.seichi915.seichi915hubcore.Seichi915HubCore
+import net.seichi915.seichi915hubcore.external.ExternalPlugins
 import net.seichi915.seichi915hubcore.util.Implicits._
 import org.bukkit.Material
 import org.bukkit.command.{Command, CommandExecutor, CommandSender, TabExecutor}
@@ -47,7 +48,7 @@ class AdminsCommand extends CommandExecutor with TabExecutor {
       Seichi915HubCore.mainWorldItemInOffHand.remove(player)
     }
     val adminIntroductionWorld =
-      Seichi915HubCore.multiverseCore.getMVWorldManager
+      ExternalPlugins.getMultiverseCore.getMVWorldManager
         .getMVWorld("Administrators")
     player.teleport(adminIntroductionWorld.getSpawnLocation)
     true

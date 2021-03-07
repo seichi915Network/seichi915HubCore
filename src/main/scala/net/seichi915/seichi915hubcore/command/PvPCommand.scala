@@ -1,6 +1,7 @@
 package net.seichi915.seichi915hubcore.command
 
 import net.seichi915.seichi915hubcore.Seichi915HubCore
+import net.seichi915.seichi915hubcore.external.ExternalPlugins
 import net.seichi915.seichi915hubcore.util.Implicits._
 import org.bukkit.command.{Command, CommandExecutor, CommandSender, TabExecutor}
 import org.bukkit.entity.Player
@@ -38,7 +39,7 @@ class PvPCommand extends CommandExecutor with TabExecutor {
     }
     player.getInventory.clear()
     val pvpWorld =
-      Seichi915HubCore.multiverseCore.getMVWorldManager.getMVWorld("PvP")
+      ExternalPlugins.getMultiverseCore.getMVWorldManager.getMVWorld("PvP")
     player.teleport(pvpWorld.getSpawnLocation)
     true
   }
