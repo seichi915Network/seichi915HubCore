@@ -13,7 +13,7 @@ object MainMenu extends Menu {
     val inventory = Bukkit.createInventory(
       Seichi915HubInventoryHolder.seichi915HubInventoryHolder,
       54,
-      "seichi915Hubメニュー")
+      "サーバー選択メニュー")
     Configuration.getServers.foreach { server =>
       val itemStack = server.toItemStack
       itemStack.setClickAction(_.connectToServer(server.getServerName))
