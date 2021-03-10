@@ -15,8 +15,7 @@ object Configuration {
       .getConfigurationSection("Servers")
       .getKeys(false)
       .asScala
-      .map { key =>
-        val serverName = key
+      .map { serverName =>
         val index = config.getInt(s"Servers.$serverName.Index")
         val title =
           s"${ChatColor.WHITE}${ChatColor.translateAlternateColorCodes('&', config.getString(s"Servers.$serverName.Title"))}"
